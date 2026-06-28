@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rustam Enterprise | Premium Curated Store</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #191919;
+            --bg-accent-dark: #222222;
+            --cream: #F9F6F0;
+            --burgundy: #541D24;
+            --gold: #C5A059;
+            --gold-light: #E5C483;
+            --text-light: #FFFFFF;
+            --text-dark: #2A2A2A;
+            --text-muted: #A0A0A0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .nav-links a {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: rgba(25, 25, 25, 0.95);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 4rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .cart-icon {
+            color: var(--gold);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            text-align: center;
+            padding: 8rem 2rem;
+            background: linear-gradient(rgba(25,25,25,0.85), rgba(25,25,25,0.95)), url('40478.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            color: var(--gold);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        /* Curated Selection (Cream Section) */
+        .curated-section {
+            background-color: var(--cream);
+            color: var(--text-dark);
+            padding: 5rem 4rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background-color: var(--gold);
+        }
+
+        .curated-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .grid-item {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.4s ease;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-8px);
+        }
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Layout Grid sizing mimicking the layout design */
+        .item-large-vertical { grid-column: span 4; height: 450px; }
+        .item-split { grid-column: span 3; display: flex; flex-direction: column; gap: 2rem; background: transparent; box-shadow: none; }
+        .item-split .grid-item { height: calc(225px - 1rem); }
+        .item-center-focus { grid-column: span 5; height: 450px; }
+
+        /* Chillers Section (Burgundy Section) */
+        .chillers-section {
+            background-color: var(--burgundy);
+            display: flex;
+            align-items: center;
+            padding: 0;
+            min-height: 500px;
+        }
+
+        .chillers-images {
+            width: 50%;
+            display: flex;
+            height: 500px;
+        }
+
+        .chiller-img-wrapper {
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .chiller-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .chiller-img-wrapper img:hover {
+            transform: scale(1.05);
+        }
+
+        .chillers-text {
+            width: 50%;
+            padding: 4rem;
+        }
+
+        .chillers-text h2 {
+            font-size: 2.8rem;
+            color: var(--gold-light);
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .chillers-text p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 500px;
+        }
+
+        /* Showcase Grid (Lower Light Section) */
+        .showcase-section {
+            background-color: var(--cream);
+            padding: 5rem 4rem;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .showcase-card {
+            border-radius: 12px;
+            overflow: hidden;
+            height: 400px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        }
+
+        .showcase-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: var(--bg-accent-dark);
+            padding: 5rem 2rem 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(197, 160, 89, 0.1);
+        }
+
+        .contact-section h2 {
+            color: var(--gold);
+            font-size: 2.2rem;
+            margin-bottom: 3.5rem;
+            letter-spacing: 1px;
+        }
+
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 6rem;
+            max-width: 1000px;
+            margin: 0 auto 4rem auto;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .contact-item .icon {
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+
+        .contact-item p {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        .contact-item span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-dark);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        footer a {
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--gold-light);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            nav { padding: 1.5rem 2rem; }
+            .curated-grid { display: flex; flex-direction: column; }
+            .item-large-vertical, .item-center-focus { height: 350px; }
+            .item-split { gap: 2rem; }
+            .chillers-section { flex-direction: column; }
+            .chillers-images, .chillers-text { width: 100%; }
+            .showcase-grid { grid-template-columns: 1fr; }
+            .contact-grid { gap: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div style="font-family: 'Playfair Display', serif; font-weight: 700; color: var(--gold); letter-spacing: 1px;">RUSTAM ENTERPRISE</div>
+        <ul class="nav-links">
+            <li><a href="#selection">Our Selection</a></li>
+            <li><a href="#chillers">Premium Chillers</a></li>
+            <li><a href="#showcase">Daily Curated</a></li>
+            <li><a href="#visit">Visit Us</a></li>
+        </ul>
+        <div class="cart-icon">🛒</div>
+    </nav>
+
+    <section class="hero">
+        <h1>Rustam Enterprise</h1>
+        <p>Est. 2020</p>
+    </section>
+
+    <section class="curated-section" id="selection">
+        <div class="section-header">
+            <h2>The Curated Selection</h2>
+        </div>
+        
+        <div class="curated-grid">
+            <div class="grid-item item-large-vertical">
+                <img src="40451.jpg" alt="Premium Chips Stack Selection">
+            </div>
+            
+            <div class="item-split">
+                <div class="grid-item">
+                    <img src="40446.jpg" alt="ChocoPie Stock Shelf">
+                </div>
+                <div class="grid-item">
+                    <img src="40471.jpg" alt="Snacks and Quick Bites Grid">
+                </div>
+            </div>
+            
+            <div class="grid-item item-center-focus">
+                <img src="40470.jpg" alt="Exquisite Biscuits Collection">
+            </div>
+        </div>
+    </section>
+
+    <section class="chillers-section" id="chillers">
+        <div class="chillers-images">
+            <div class="chiller-img-wrapper">
+                <img src="40469.jpg" alt="Coca Cola Refreshment Unit">
+            </div>
+            <div class="chiller-img-wrapper">
+                <img src="40462.jpg" alt="Cream Bell Dairy Cooler">
+            </div>
+        </div>
+        <div class="chillers-text">
+            <h2>State-of-the-Art<br>Chillers</h2>
+            <p>State-of-the-art cold storage system keeping your favorite refreshments perfectly chilled. Experience instantly ice-cold carbonated blends, fresh dairy selections, and energy hydration mixers seamlessly arranged for effortless accessibility.</p>
+        </div>
+    </section>
+
+    <section class="showcase-section" id="showcase">
+        <div class="showcase-grid">
+            <div class="showcase-card">
+                <img src="40463.jpg" alt="Store Checkout Counter Counterfront">
+            </div>
+            <div class="showcase-card">
+                <img src="40464.jpg" alt="Main Grocery Provisions Cabinet">
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="visit">
+        <h2>Contact</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <span class="icon">📞</span>
+                <span>Phone</span>
+                <p>+91 98646-27733</p>
+            </div>
+            <div class="contact-item">
+                <span class="icon">✉️</span>
+                <span>Email</span>
+                <p>nazimuddin.st@gmail.com</p>
+            </div>
+            <div class="contact-item">
+                <span class="icon">📍</span>
+                <span>Location</span>
+                <p>No.5 Baruajhar, Darrang, Assam - 784116</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2020 RUSTAM ENTERPRISE | All Rights Reserved</p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted);">
+            Developed by <a href="https://asifzaman.work.gd" target="_blank">ASIF TECH INFO</a>
+        </p>
+    </footer>
+
+</body>
+</html>
